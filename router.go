@@ -232,8 +232,9 @@ func (r *Router) Handle(method string, path string, handle http.HandlerFunc) {
 }
 
 // GetParam returns route param stored in http.request.
-func GetParam(r *http.Request, key string) string {
-	return GetAllParams(r)[key]
+func GetParam(r *http.Request, key string) (string, bool) {
+	val, ok := GetAllParams(r)[key]
+	return val, ok
 }
 
 // contextKeyType is a private struct that is used for storing values in net.Context
